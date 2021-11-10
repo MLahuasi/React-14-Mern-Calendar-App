@@ -14,6 +14,7 @@ import { messages } from '../../helpers/calendar-messages-es';
  */
 import { Navbar } from '../ui/Navbar';
 import { CalendarEvent } from './CalendarEvent';
+import { CalendarModal } from './CalendarModal';
 
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
@@ -86,12 +87,14 @@ export const CalendarScreen = () => {
                 onSelectEvent={onSelect}
                 onView={onViewChange} //Obtener la vista actual del calendario
                 view={lastView} //Cargar una vista
-                components={
+                components={ //Personalizar el evento del calendario
                     {
                         event: CalendarEvent
                     }
                 }
             />
+
+            <CalendarModal />
         </div>
     )
 }
