@@ -41,7 +41,9 @@ Esta sección es el inicio de nuestro MERN, (Mongo Express React Node), luego cr
 
     - React Router Dom: https://v5.reactrouter.com/web/guides/quick-start
     - Bootstrap: https://getbootstrap.com/docs/4.5/getting-started/introduction/
-
+    - font-awesome [íconos]: https://cdnjs.com/libraries/font-awesome [https://fontawesome.com/v5.15/icons?d=listing&p=7&m=free]
+    - react-big-calendar [Control Calendario]: https://www.npmjs.com/package/react-big-calendar
+    - moment [Manejar Fechas]: npm i moment
 
 ```
 
