@@ -46,6 +46,7 @@ Esta sección es el inicio de nuestro MERN, (Mongo Express React Node), luego cr
     - moment [Manejar Fechas]: npm i moment
     - react-modal [Pantallas emergentes]: npm i react-modal [https://www.npmjs.com/package/react-modal]
     - React-DateTime-Picker (Control Fecha): npm i react-datetime-picker [https://www.npmjs.com/package/react-datetime-picker]
+    - SweetAlert2: npm i sweetalert2
 
 
 ```
