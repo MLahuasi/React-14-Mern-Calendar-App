@@ -6,6 +6,7 @@ import { CalendarApp } from './CalendarApp';
 
 import './styles/styles.css';
 import './styles/modal.css';
+import './styles/datepicker.css'
 
 ReactDOM.render(
   <CalendarApp />,

@@ -45,6 +45,7 @@ Esta sección es el inicio de nuestro MERN, (Mongo Express React Node), luego cr
     - react-big-calendar [Control Calendario]: https://www.npmjs.com/package/react-big-calendar
     - moment [Manejar Fechas]: npm i moment
     - react-modal [Pantallas emergentes]: npm i react-modal [https://www.npmjs.com/package/react-modal]
+    - React-DateTime-Picker (Control Fecha): npm i react-datetime-picker [https://www.npmjs.com/package/react-datetime-picker]
 
 
 ```
