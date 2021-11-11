@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 /**
  * Configuración BigCalendar
@@ -17,6 +17,8 @@ import { Navbar } from '../ui/Navbar';
 import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
 import { uiOpenModal } from '../../redux/actions/ui';
+import { eventSetActive } from '../../redux/actions/calendarEvents';
+import { AddNewFab } from '../ui/AddNewFab';
 
 
 // Setup the localizer by providing the moment (or globalize) Object
@@ -41,6 +43,8 @@ const events = [
 
 export const CalendarScreen = () => {
 
+    const { activeEvent }  = useSelector(state => state.calendar)
+
     //10 [React-Redux]. Actualizar al State [en este caso ui.modalOpen]
     const dispatch = useDispatch();
 
@@ -57,7 +61,10 @@ export const CalendarScreen = () => {
     }
 
     const onSelect = (e) => {
-        console.log('Select Event: ', e);
+        //console.log('Select Event: ', e);
+        console.log("Seleccionar Tarea");
+        dispatch(eventSetActive(e));
+        dispatch(uiOpenModal());
     }
 
     const onViewChange = (e) => {
@@ -104,6 +111,7 @@ export const CalendarScreen = () => {
                 }
             />
 
+            <AddNewFab />
             <CalendarModal />
         </div>
     )

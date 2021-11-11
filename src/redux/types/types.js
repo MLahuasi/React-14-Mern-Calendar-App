@@ -2,5 +2,8 @@
 export const types = {
     //Abrir y Cerrar pantalla modal Calendario
     iuOpenModal: '[ui] Open modal',
-    iuCloseModal: '[ui] Close modal'
+    iuCloseModal: '[ui] Close modal',
+    //Acciones Calendario
+    eventSetActive: '[calendar] Set Active',
+    eventAddNew: '[calendar] Add new',
 }

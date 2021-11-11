@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 //Controles Personalizados
 import { customStyles } from '../../helpers/modal-custom-styles';
 import { uiCloseModal } from '../../redux/actions/ui';
+import { eventAddNew } from '../../redux/actions/calendarEvents';
 
 //Buscar el componente que inicia la app
 Modal.setAppElement('#root');
@@ -114,6 +115,16 @@ export const CalendarModal = () => {
         if( title.trim().length < 2){
             return setTitleValid(false);
         }
+
+        //console.log('formValues: ', c);
+        dispatch(eventAddNew({
+            ...formValues,
+            id: new Date().getTime(),
+            user: {
+                _id: '123',
+                name: 'Mauricio'
+            }
+        }));
 
         //TODO: Realizar Acceso a BDD
         setTitleValid(true);
