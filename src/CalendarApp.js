@@ -1,13 +1,19 @@
 // 2. [Configuraciones]: Crear App Inicial
-// usar rafc
-
-import React from 'react'
-import { AppRouter } from './router/AppRouter'
+import React from 'react';
+//7 [React-Redux]. Expandir el Store
+import { Provider } from 'react-redux';
+//Componentes Personalizados
+import { store } from './redux/store/store';
+import { AppRouter } from './router/AppRouter';
 
 export const CalendarApp = () => {
+
+    store
     return (
-        <>
+        <Provider store={ store } >
             <AppRouter />
-        </>
+        </Provider>
     )
 }
+
+

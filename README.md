@@ -27,11 +27,18 @@ Esta sección es el inicio de nuestro MERN, (Mongo Express React Node), luego cr
     5. Configurar App de Inicio (CalendarApp)
     6. Crear Carpetas de Componentes (components)
     7. Crear Carpetas de Router (router)
+    8. Configurar react-redux
+    9. Configurar redux-thunk [Acciones Asyncronas, peticiones Http]
+    10. Configurar Redux-Devtools-Extension [Herramientas de desarrollo en Chrome, Mozilla]
+
+
 
     Otros:
         - Iniciar App: npm start
         - Restaurar App: npm install
         - Instalar Sass: npm install node-sass
+
+
 
 ```
 
@@ -47,6 +54,10 @@ Esta sección es el inicio de nuestro MERN, (Mongo Express React Node), luego cr
     - react-modal [Pantallas emergentes]: npm i react-modal [https://www.npmjs.com/package/react-modal]
     - React-DateTime-Picker (Control Fecha): npm i react-datetime-picker [https://www.npmjs.com/package/react-datetime-picker]
     - SweetAlert2: npm i sweetalert2
+    - Redux: [https://es.redux.js.org/]
+    - React-Redux: [https://react-redux.js.org/] [npm install react-redux]
+    - Redux-thunk: [https://www.npmjs.com/package/redux-thunk] [npm i redux-thunk]
+    - Redux-Devtools-Extension: [https://github.com/zalmoxisus/redux-devtools-extension#usage]
 
 
 ```
