@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 /**
  * Configuración BigCalendar
@@ -15,6 +16,8 @@ import { messages } from '../../helpers/calendar-messages-es';
 import { Navbar } from '../ui/Navbar';
 import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
+import { uiOpenModal } from '../../redux/actions/ui';
+
 
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
@@ -38,12 +41,19 @@ const events = [
 
 export const CalendarScreen = () => {
 
+    //10 [React-Redux]. Actualizar al State [en este caso ui.modalOpen]
+    const dispatch = useDispatch();
+
     //Cuando se recarga la página recarga la vista del localStorage
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
 
+
+
     //Eventos
     const onDoubleClick = (e) => {
-        console.log('Doble Click Event: ', e);
+        //console.log('Doble Click Event: ', e);
+        console.log('Abrir Modal');
+        dispatch(uiOpenModal());
     }
 
     const onSelect = (e) => {

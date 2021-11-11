@@ -59,12 +59,6 @@ Esta sección es el inicio de nuestro MERN, (Mongo Express React Node), luego cr
     - Redux-thunk: [https://www.npmjs.com/package/redux-thunk] [npm i redux-thunk]
     - Redux-Devtools-Extension: [https://github.com/zalmoxisus/redux-devtools-extension#usage]
 
-
-```
-
-# Tarea: Agregar nuevas acciones
-
-```
-
+    Pasos para la configuración de Redux: Buscar: [React-Redux]
 
 ```

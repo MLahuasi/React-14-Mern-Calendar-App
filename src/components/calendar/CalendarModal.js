@@ -1,5 +1,7 @@
 //Nativos de React
 import React, { useState } from 'react';
+//Importar funciones React-Redux
+import { useDispatch, useSelector } from 'react-redux';
 
 //Controles de Terceros
 import Modal from 'react-modal';    //Pantalla Modal
@@ -9,6 +11,7 @@ import Swal from 'sweetalert2';
 
 //Controles Personalizados
 import { customStyles } from '../../helpers/modal-custom-styles';
+import { uiCloseModal } from '../../redux/actions/ui';
 
 //Buscar el componente que inicia la app
 Modal.setAppElement('#root');
@@ -17,6 +20,11 @@ const now = moment().minute(0).seconds(0).add(1,'hour');
 const nowPlus1 = now.clone().add(1, 'hours');
 
 export const CalendarModal = () => {
+    //9 [React-Redux]. Escuchar al State [en este caso ui.modalOpen]
+    const state = useSelector(state => state.ui)
+    const { modalOpen } = state;
+    const dispatch = useDispatch();
+
     //State
     const [dateStart, setDateStart] = useState(now.toDate());     //Fecha Inicio del Evento Default
     const [dateEnd, setDateEnd] = useState(nowPlus1.toDate());    //Fecha Fin del Evento Default
@@ -48,8 +56,9 @@ export const CalendarModal = () => {
      * Evento que se ejecuta cuando se cierra la pantalla Modal
      */
     const closeModal = () => {
-        console.log('closing....');
         //TODO: Cerrar el Modal
+        console.log('cerrar modal');
+        dispatch(uiCloseModal());
     }
 
     /**
@@ -114,7 +123,7 @@ export const CalendarModal = () => {
 
     return (
         <Modal
-            isOpen={true}                   //Mostrar u ocultar el Modal
+            isOpen={modalOpen}                   //Mostrar u ocultar el Modal
             // onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
             style={customStyles}            //Estilos Personalizados
