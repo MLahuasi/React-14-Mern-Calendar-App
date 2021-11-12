@@ -21,3 +21,21 @@ export const eventSetActive = (event) => ({
     type: types.eventSetActive,
     payload: event
 });
+
+/**
+ * Limpiar Formulario
+ * @returns
+ */
+export const eventClearActiveEvent = () => ({
+    type: types.eventClearActiveNote
+});
+
+/**
+ * Actualziar Nota
+ * @param {*} event Nota seleccionada y Editada
+ * @returns
+ */
+export const eventNoteUpdated = ( event ) => ({
+    type: types.eventNoteUpdated,
+    payload: event
+});

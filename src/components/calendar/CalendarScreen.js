@@ -26,32 +26,31 @@ import { AddNewFab } from '../ui/AddNewFab';
 moment.locale('es'); //Setear idioma en moment
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
 
-const events = [
-    {
-        title: 'Cumpleaños Jefe',
-        start: moment().toDate(),
-        end: moment().add(2, 'hours').toDate(),
-        bgcolor: '#fafafa',
-        notes: 'Comprar el Pastel',
-        user: {
-            _id: '123',
-            name: 'Mauricio'
-        }
-    }
-]
+// const events = [
+//     {
+//         title: 'Cumpleaños Jefe',
+//         start: moment().toDate(),
+//         end: moment().add(2, 'hours').toDate(),
+//         bgcolor: '#fafafa',
+//         notes: 'Comprar el Pastel',
+//         user: {
+//             _id: '123',
+//             name: 'Mauricio'
+//         }
+//     }
+// ]
 
 
 export const CalendarScreen = () => {
 
-    const { activeEvent }  = useSelector(state => state.calendar)
+    //Obtener eventos del State
+    const { events }  = useSelector(state => state.calendar)
 
     //10 [React-Redux]. Actualizar al State [en este caso ui.modalOpen]
     const dispatch = useDispatch();
 
     //Cuando se recarga la página recarga la vista del localStorage
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
-
-
 
     //Eventos
     const onDoubleClick = (e) => {
@@ -64,7 +63,6 @@ export const CalendarScreen = () => {
         //console.log('Select Event: ', e);
         console.log("Seleccionar Tarea");
         dispatch(eventSetActive(e));
-        dispatch(uiOpenModal());
     }
 
     const onViewChange = (e) => {

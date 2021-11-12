@@ -6,4 +6,7 @@ export const types = {
     //Acciones Calendario
     eventSetActive: '[calendar] Set Active',
     eventAddNew: '[calendar] Add new',
+    eventClearActiveNote: '[calendar] Clear Active',
+    eventNoteUpdated: '[calendar] Note Updated',
+    eventNoteDeleted: '[calendar] Note Deleted'
 }

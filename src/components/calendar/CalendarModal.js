@@ -1,5 +1,5 @@
 //Nativos de React
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 //Importar funciones React-Redux
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,33 +12,45 @@ import Swal from 'sweetalert2';
 //Controles Personalizados
 import { customStyles } from '../../helpers/modal-custom-styles';
 import { uiCloseModal } from '../../redux/actions/ui';
-import { eventAddNew } from '../../redux/actions/calendarEvents';
+import {
+         eventAddNew,
+         eventClearActiveEvent,
+         eventNoteUpdated
+       } from '../../redux/actions/calendarEvents';
 
 //Buscar el componente que inicia la app
 Modal.setAppElement('#root');
 
 const now = moment().minute(0).seconds(0).add(1,'hour');
 const nowPlus1 = now.clone().add(1, 'hours');
+//Evento Inicial por Default
+const initEvent = {
+    title: '',
+    notes: '',
+    start: now.toDate(),
+    end: nowPlus1.toDate()
+}
 
 export const CalendarModal = () => {
     //9 [React-Redux]. Escuchar al State [en este caso ui.modalOpen]
-    const state = useSelector(state => state.ui)
+    const state = useSelector(state => state.ui); //Obtener pantalla Modal
     const { modalOpen } = state;
+    const { activeEvent } = useSelector( state => state.calendar ); //Obtener Evento Activo
     const dispatch = useDispatch();
 
-    //State
-    const [dateStart, setDateStart] = useState(now.toDate());     //Fecha Inicio del Evento Default
-    const [dateEnd, setDateEnd] = useState(nowPlus1.toDate());    //Fecha Fin del Evento Default
-    const [formValues, setFormValues] = useState({
-        title: 'Evento',
-        notes: '',
-        start: now.toDate(),
-        end: nowPlus1.toDate()
-    });                                                                  //Valores que tiene el Formulario
+    const [formValues, setFormValues] = useState( initEvent );                                                                  //Valores que tiene el Formulario
 
     const [titleValid, setTitleValid] = useState(true);
 
     const { title, notes, start, end } = formValues;    //Obtener valores que se cargan en el Formulario
+
+    //Estar pendiente de cambios en el state en activeEvent
+    useEffect(() => {
+        if (activeEvent){
+            console.log('activeEvent: ', activeEvent);
+            setFormValues(activeEvent);
+        }
+    }, [activeEvent, setFormValues]);
 
     //Eventos
 
@@ -60,6 +72,9 @@ export const CalendarModal = () => {
         //TODO: Cerrar el Modal
         console.log('cerrar modal');
         dispatch(uiCloseModal());
+        //Reset controles del Modal
+        dispatch( eventClearActiveEvent());
+        setFormValues( initEvent );
     }
 
     /**
@@ -69,7 +84,6 @@ export const CalendarModal = () => {
     const handleStartDateChange = ( e ) => {
         console.log('handleStartDateChange: ', e);
         //Actualizar el State cuando se produce un cambio
-        setDateStart(e);
         setFormValues({
             ...formValues,
             start: e
@@ -83,7 +97,6 @@ export const CalendarModal = () => {
     const handleEndDateChange = (e) => {
         console.log('handleEndDateChange: ', e);
         //Actualizar el State cuando se produce un cambio
-        setDateEnd(e);
         setFormValues({
             ...formValues,
             end: e
@@ -116,15 +129,20 @@ export const CalendarModal = () => {
             return setTitleValid(false);
         }
 
-        //console.log('formValues: ', c);
-        dispatch(eventAddNew({
-            ...formValues,
-            id: new Date().getTime(),
-            user: {
-                _id: '123',
-                name: 'Mauricio'
-            }
-        }));
+        if( activeEvent ){
+            dispatch(eventNoteUpdated( formValues ));
+        }else{
+            //console.log('formValues: ', c);
+            dispatch(eventAddNew({
+                ...formValues,
+                id: new Date().getTime(),
+                user: {
+                    _id: '123',
+                    name: 'Mauricio'
+                }
+            }));
+        }
+
 
         //TODO: Realizar Acceso a BDD
         setTitleValid(true);
@@ -155,7 +173,7 @@ export const CalendarModal = () => {
                     {/* <input className="form-control" placeholder="Fecha inicio" /> */}
                     <DateTimePicker
                         onChange={ handleStartDateChange }
-                        value={dateStart}
+                        value={start}
                         className="form-control"
                     />
                 </div>
@@ -165,8 +183,8 @@ export const CalendarModal = () => {
                     {/* <input className="form-control" placeholder="Fecha inicio" /> */}
                     <DateTimePicker
                         onChange={handleEndDateChange}
-                        value={dateEnd}
-                        minDate={ dateStart }
+                        value={end}
+                        minDate={ start }
                         className="form-control"
                     />
                 </div>
