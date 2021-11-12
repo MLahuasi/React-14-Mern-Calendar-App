@@ -44,13 +44,23 @@ export const calendarReducer = (state = initialState, action) => {
                 activeEvent: null
             }
 
-        //Actualizar Nota Activa
+        //Actualizar Nota
         case types.eventNoteUpdated:
             return {
                 ...state,
                 events: state.events.map(
                     e => (e.id === action.payload.id ) ? action.payload : e
                 )
+            }
+
+        //Eliminar Nota
+        case types.eventNoteDeleted:
+            return {
+                ...state,
+                events: state.events.filter(
+                    e => (e.id !== state.activeEvent.id)
+                ),
+                activeEvent: null
             }
 
         default:

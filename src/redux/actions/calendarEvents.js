@@ -39,3 +39,11 @@ export const eventNoteUpdated = ( event ) => ({
     type: types.eventNoteUpdated,
     payload: event
 });
+
+/**
+ * Eliminar Nota
+ * @returns
+ */
+export const eventNoteDeleted = () => ({
+    type: types.eventNoteDeleted
+});
